@@ -63,7 +63,7 @@ export const AddTaskModal = ({ isOpen, onClose, onAdd }: { isOpen: boolean, onCl
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="e.g. Physics Lab Report" 
-                style={{ width: '100%', padding: '16px', borderRadius: '16px', border: '1.5px solid var(--border)', background: 'var(--bg-card)', color: 'var(--text-dark)', fontSize: '16px', fontWeight: '500' }}
+                style={{ width: '100%', boxSizing: 'border-box', padding: '16px', borderRadius: '16px', border: '1.5px solid var(--border)', background: 'var(--bg-card)', color: 'var(--text-dark)', fontSize: '16px', fontWeight: '500' }}
               />
             </div>
 
@@ -73,7 +73,7 @@ export const AddTaskModal = ({ isOpen, onClose, onAdd }: { isOpen: boolean, onCl
                 value={desc}
                 onChange={(e) => setDesc(e.target.value)}
                 placeholder="Details about this task..." 
-                style={{ width: '100%', padding: '16px', borderRadius: '16px', border: '1.5px solid var(--border)', background: 'var(--bg-card)', color: 'var(--text-dark)', fontSize: '15px', minHeight: '100px', fontFamily: 'inherit' }}
+                style={{ width: '100%', boxSizing: 'border-box', padding: '16px', borderRadius: '16px', border: '1.5px solid var(--border)', background: 'var(--bg-card)', color: 'var(--text-dark)', fontSize: '15px', minHeight: '100px', fontFamily: 'inherit' }}
               />
             </div>
 
@@ -97,7 +97,7 @@ export const AddTaskModal = ({ isOpen, onClose, onAdd }: { isOpen: boolean, onCl
                   type="text"
                   value={time}
                   onChange={(e) => setTime(e.target.value)}
-                  style={{ width: '100%', padding: '12px', borderRadius: '16px', border: '1.5px solid var(--border)', background: 'var(--bg-card)', color: 'var(--text-dark)', fontSize: '14px', fontWeight: '600', textAlign: 'center' }}
+                  style={{ width: '100%', boxSizing: 'border-box', padding: '12px', borderRadius: '16px', border: '1.5px solid var(--border)', background: 'var(--bg-card)', color: 'var(--text-dark)', fontSize: '14px', fontWeight: '600', textAlign: 'center' }}
                 />
               </div>
             </div>
