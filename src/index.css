@@ -48,6 +48,14 @@ svg {
   padding: 0;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+input, textarea, [contenteditable] {
+  -webkit-user-select: auto;
+  user-select: auto;
 }
 
 body {
@@ -59,6 +67,7 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  overscroll-behavior-y: none;
   display: flex;
   justify-content: center;
   align-items: center;
