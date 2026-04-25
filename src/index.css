@@ -82,8 +82,6 @@ body {
   body {
     background-color: var(--bg-main);
     display: block;
-    padding-top: env(safe-area-inset-top);
-    padding-bottom: env(safe-area-inset-bottom);
   }
 }
 
