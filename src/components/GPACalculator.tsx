@@ -161,7 +161,7 @@ export const GPACalculator = ({ user }: { user: any }) => {
                 placeholder="Code" 
                 value={courseCode} 
                 onChange={e => setCourseCode(e.target.value)}
-                style={{ padding: '10px 8px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--bg-main)', fontSize: '13px' }} 
+                style={{ width: '100%', minWidth: 0, boxSizing: 'border-box', padding: '10px 8px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--bg-main)', fontSize: '13px' }} 
               />
               <input 
                 required 
@@ -171,12 +171,12 @@ export const GPACalculator = ({ user }: { user: any }) => {
                 placeholder="Cr" 
                 value={credits} 
                 onChange={e => setCredits(e.target.value)}
-                style={{ padding: '10px 8px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--bg-main)', fontSize: '13px' }} 
+                style={{ width: '100%', minWidth: 0, boxSizing: 'border-box', padding: '10px 8px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--bg-main)', fontSize: '13px' }} 
               />
               <select 
                 value={grade} 
                 onChange={e => setGrade(e.target.value)}
-                style={{ padding: '10px 8px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--bg-main)', fontWeight: '700', fontSize: '13px' }}
+                style={{ width: '100%', minWidth: 0, boxSizing: 'border-box', padding: '10px 8px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--bg-main)', fontWeight: '700', fontSize: '13px' }}
               >
                 {Object.keys(gradePoints).map(g => <option key={g} value={g}>{g}</option>)}
               </select>

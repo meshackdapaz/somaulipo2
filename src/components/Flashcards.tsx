@@ -125,15 +125,15 @@ export const Flashcards = ({ user }: { user: any }) => {
         <form onSubmit={addCard} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           <div>
             <label style={{ display: 'block', fontSize: '13px', fontWeight: '700', color: 'var(--text-muted)', marginBottom: '8px' }}>Deck / Subject</label>
-            <input required value={deckName} onChange={e => setDeckName(e.target.value)} style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', border: '1px solid var(--border)', background: 'var(--bg-main)' }} placeholder="e.g. Biology 101" />
+            <input required value={deckName} onChange={e => setDeckName(e.target.value)} style={{ width: '100%', boxSizing: 'border-box', padding: '12px 16px', borderRadius: '12px', border: '1px solid var(--border)', background: 'var(--bg-main)' }} placeholder="e.g. Biology 101" />
           </div>
           <div>
             <label style={{ display: 'block', fontSize: '13px', fontWeight: '700', color: 'var(--text-muted)', marginBottom: '8px' }}>Question (Front)</label>
-            <textarea required value={frontText} onChange={e => setFrontText(e.target.value)} style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', border: '1px solid var(--border)', background: 'var(--bg-main)', minHeight: '80px', resize: 'vertical' }} placeholder="What is the powerhouse of the cell?" />
+            <textarea required value={frontText} onChange={e => setFrontText(e.target.value)} style={{ width: '100%', boxSizing: 'border-box', padding: '12px 16px', borderRadius: '12px', border: '1px solid var(--border)', background: 'var(--bg-main)', minHeight: '80px', resize: 'vertical' }} placeholder="What is the powerhouse of the cell?" />
           </div>
           <div>
             <label style={{ display: 'block', fontSize: '13px', fontWeight: '700', color: 'var(--text-muted)', marginBottom: '8px' }}>Answer (Back)</label>
-            <textarea required value={backText} onChange={e => setBackText(e.target.value)} style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', border: '1px solid var(--border)', background: 'var(--bg-main)', minHeight: '80px', resize: 'vertical' }} placeholder="Mitochondria" />
+            <textarea required value={backText} onChange={e => setBackText(e.target.value)} style={{ width: '100%', boxSizing: 'border-box', padding: '12px 16px', borderRadius: '12px', border: '1px solid var(--border)', background: 'var(--bg-main)', minHeight: '80px', resize: 'vertical' }} placeholder="Mitochondria" />
           </div>
           <button disabled={isAdding} type="submit" style={{ background: 'var(--primary)', color: 'white', border: 'none', padding: '16px', borderRadius: '12px', fontWeight: '800', fontSize: '15px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', cursor: 'pointer', marginTop: '8px' }}>
             {isAdding ? <Loader2 size={20} className="spinner" /> : <><Plus size={20} /> Add Flashcard</>}

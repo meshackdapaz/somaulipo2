@@ -596,6 +596,8 @@ const AssignmentWorkspace: React.FC<AssignmentWorkspaceProps> = ({ userProfile }
 
 const inputStyle = {
   width: '100%', 
+  minWidth: 0,
+  boxSizing: 'border-box' as 'border-box',
   padding: '16px 16px', 
   borderRadius: '12px', 
   border: '2px solid transparent', 
