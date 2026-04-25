@@ -118,6 +118,8 @@ body {
   top: 0;
   left: 0;
   border-right: 1px solid var(--border);
+  overflow-y: auto;
+  padding-bottom: max(40px, env(safe-area-inset-bottom));
 }
 
 .profile-img {

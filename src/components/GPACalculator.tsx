@@ -71,7 +71,7 @@ export const GPACalculator = ({ user }: { user: any }) => {
   const targetDiff = parseFloat(targetGPA) - currentGPA;
 
   return (
-    <div style={{ padding: '24px', maxWidth: '800px', margin: '0 auto', paddingBottom: '100px' }}>
+    <div style={{ padding: '0', maxWidth: '800px', margin: '0 auto', paddingBottom: '40px' }}>
       <div style={{ marginBottom: '32px' }}>
         <h1 style={{ fontSize: '32px', fontWeight: '900', color: 'var(--text-dark)', marginBottom: '8px', letterSpacing: '-1px' }}>GPA Tracker</h1>
         <p style={{ color: 'var(--text-muted)' }}>Calculate your GPA and plan your target grades.</p>
@@ -106,9 +106,9 @@ export const GPACalculator = ({ user }: { user: any }) => {
               style={{ fontSize: '48px', fontWeight: '900', width: '120px', background: 'transparent', border: 'none', color: 'var(--text-dark)', letterSpacing: '-2px', borderBottom: '2px solid var(--border)', padding: 0 }}
             />
           </div>
-          <div style={{ marginTop: 'auto', fontSize: '14px', color: targetDiff > 0 ? '#f59e0b' : '#10b981', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '4px' }}>
-            <TrendingUp size={16} />
-            {targetDiff > 0 ? `You need +${targetDiff.toFixed(2)} to reach your goal` : 'You are hitting your goal!'}
+          <div style={{ marginTop: 'auto', fontSize: '14px', color: targetDiff > 0 ? '#f59e0b' : '#10b981', fontWeight: '600', display: 'flex', alignItems: 'flex-start', gap: '6px', flexWrap: 'wrap' }}>
+            <TrendingUp size={16} style={{ flexShrink: 0, marginTop: '2px' }} />
+            <span style={{ flex: 1 }}>{targetDiff > 0 ? `You need +${targetDiff.toFixed(2)} to reach your goal` : 'You are hitting your goal!'}</span>
           </div>
         </div>
       </div>
@@ -122,8 +122,8 @@ export const GPACalculator = ({ user }: { user: any }) => {
           <div style={{ padding: '40px', display: 'flex', justifyContent: 'center' }}><Loader2 className="spinner" color="var(--primary)" /></div>
         ) : (
           <div>
-            <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 40px', gap: '16px', padding: '16px 20px', background: 'rgba(0,0,0,0.02)', fontSize: '13px', fontWeight: '700', color: 'var(--text-muted)', borderBottom: '1px solid var(--border)' }}>
-              <div>COURSE CODE</div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr 30px', gap: '8px', padding: '16px 16px', background: 'rgba(0,0,0,0.02)', fontSize: '11px', fontWeight: '800', color: 'var(--text-muted)', borderBottom: '1px solid var(--border)' }}>
+              <div>COURSE</div>
               <div>CREDITS</div>
               <div>GRADE</div>
               <div></div>
@@ -136,11 +136,11 @@ export const GPACalculator = ({ user }: { user: any }) => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, height: 0 }}
-                  style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 40px', gap: '16px', padding: '16px 20px', borderBottom: '1px solid var(--border)', alignItems: 'center' }}
+                  style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr 30px', gap: '8px', padding: '16px', borderBottom: '1px solid var(--border)', alignItems: 'center' }}
                 >
-                  <div style={{ fontWeight: '700', color: 'var(--text-dark)' }}>{record.course_code}</div>
-                  <div style={{ color: 'var(--text-muted)' }}>{record.credits}</div>
-                  <div style={{ fontWeight: '800', color: record.grade === 'A' ? '#10b981' : record.grade.startsWith('B') ? '#3b82f6' : record.grade === 'C' ? '#f59e0b' : '#ef4444' }}>{record.grade}</div>
+                  <div style={{ fontWeight: '700', color: 'var(--text-dark)', fontSize: '14px' }}>{record.course_code}</div>
+                  <div style={{ color: 'var(--text-muted)', fontSize: '14px' }}>{record.credits}</div>
+                  <div style={{ fontWeight: '800', fontSize: '14px', color: record.grade === 'A' ? '#10b981' : record.grade.startsWith('B') ? '#3b82f6' : record.grade === 'C' ? '#f59e0b' : '#ef4444' }}>{record.grade}</div>
                   <button onClick={() => deleteRecord(record.id)} style={{ background: 'transparent', border: 'none', color: '#ef4444', cursor: 'pointer', display: 'flex', justifyContent: 'center' }}>
                     <Trash2 size={16} />
                   </button>
@@ -155,33 +155,33 @@ export const GPACalculator = ({ user }: { user: any }) => {
               </div>
             )}
 
-            <form onSubmit={addRecord} style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 40px', gap: '16px', padding: '16px 20px', background: 'rgba(0,0,0,0.02)' }}>
+            <form onSubmit={addRecord} style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr 30px', gap: '8px', padding: '16px', background: 'rgba(0,0,0,0.02)' }}>
               <input 
                 required 
-                placeholder="e.g. CS 101" 
+                placeholder="Code" 
                 value={courseCode} 
                 onChange={e => setCourseCode(e.target.value)}
-                style={{ padding: '10px 12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--bg-main)' }} 
+                style={{ padding: '10px 8px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--bg-main)', fontSize: '13px' }} 
               />
               <input 
                 required 
                 type="number" 
                 step="0.5" 
                 min="0.5" 
-                placeholder="Credits" 
+                placeholder="Cr" 
                 value={credits} 
                 onChange={e => setCredits(e.target.value)}
-                style={{ padding: '10px 12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--bg-main)' }} 
+                style={{ padding: '10px 8px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--bg-main)', fontSize: '13px' }} 
               />
               <select 
                 value={grade} 
                 onChange={e => setGrade(e.target.value)}
-                style={{ padding: '10px 12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--bg-main)', fontWeight: '700' }}
+                style={{ padding: '10px 8px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--bg-main)', fontWeight: '700', fontSize: '13px' }}
               >
                 {Object.keys(gradePoints).map(g => <option key={g} value={g}>{g}</option>)}
               </select>
-              <button disabled={isAdding} type="submit" style={{ background: 'var(--primary)', color: 'white', border: 'none', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
-                {isAdding ? <Loader2 size={16} className="spinner" /> : <Plus size={18} />}
+              <button disabled={isAdding} type="submit" style={{ background: 'var(--primary)', color: 'white', border: 'none', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', height: '100%' }}>
+                {isAdding ? <Loader2 size={14} className="spinner" /> : <Plus size={16} />}
               </button>
             </form>
           </div>
