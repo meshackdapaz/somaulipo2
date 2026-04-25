@@ -32,7 +32,7 @@ export const Leaderboard = ({ currentUser }: { currentUser: any }) => {
   };
 
   return (
-    <div style={{ padding: '24px', maxWidth: '800px', margin: '0 auto', paddingBottom: '100px' }}>
+    <div style={{ padding: '0', maxWidth: '800px', margin: '0 auto', paddingBottom: '40px' }}>
       <div style={{ marginBottom: '32px', textAlign: 'center' }}>
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
           <div style={{ background: 'rgba(245, 158, 11, 0.1)', padding: '16px', borderRadius: '50%' }}>

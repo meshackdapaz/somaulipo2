@@ -70,7 +70,7 @@ export const Flashcards = ({ user }: { user: any }) => {
   if (loading) return <div style={{ display: 'flex', justifyContent: 'center', padding: '40px' }}><Loader2 className="spinner" /></div>;
 
   return (
-    <div style={{ padding: '24px', maxWidth: '800px', margin: '0 auto', paddingBottom: '100px' }}>
+    <div style={{ padding: '0', maxWidth: '800px', margin: '0 auto', paddingBottom: '40px' }}>
       <div style={{ marginBottom: '32px' }}>
         <h1 style={{ fontSize: '32px', fontWeight: '900', color: 'var(--text-dark)', marginBottom: '8px', letterSpacing: '-1px', display: 'flex', alignItems: 'center', gap: '12px' }}>
           <Layers color="var(--primary)" /> Flashcards

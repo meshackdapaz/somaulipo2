@@ -120,7 +120,9 @@ body {
   border-right: 1px solid var(--border);
   overflow-y: auto;
   padding-bottom: max(40px, env(safe-area-inset-bottom));
+  scrollbar-width: none;
 }
+.sidebar-content::-webkit-scrollbar { display: none; }
 
 .profile-img {
   width: 70px;

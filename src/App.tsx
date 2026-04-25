@@ -2083,9 +2083,9 @@ function AppContent() {
       case 'Timetable': return <TimetableView timetable={timetable} stats={stats} fetchTimetable={fetchData} setConfirmDialog={setConfirmDialog} />;
       case 'Digital Library': return <LibraryView books={books} stats={stats} uploadBook={uploadBook} onDeleteBook={deleteBook} onDeleteAll={deleteAllBooks} onOpenBook={openBook} />;
       case 'Workspace': return <AssignmentWorkspace userProfile={stats} />;
-      case 'GPA Calculator': return <GPACalculator user={user} />;
-      case 'Leaderboard': return <Leaderboard currentUser={stats} />;
-      case 'Flashcards': return <Flashcards user={user} />;
+      case 'GPA Calculator': return <div className="view-content"><GPACalculator user={user} /></div>;
+      case 'Leaderboard': return <div className="view-content"><Leaderboard currentUser={stats} /></div>;
+      case 'Flashcards': return <div className="view-content"><Flashcards user={user} /></div>;
       case 'Settings': return <SettingsView theme={theme} setTheme={setTheme} stats={stats} dailyTips={dailyTips} onTipsChanged={fetchData} />;
       case 'Groups': {
         if (!activeGroup) return (
