@@ -5,6 +5,8 @@ import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import { FileText, Download, Share2, AlertCircle, CheckCircle2, Link as LinkIcon, Edit3, Settings, BookOpen } from 'lucide-react';
 import { UDSM_LOGO } from '../lib/logo';
+import { savePdfFromBase64 } from '../lib/download';
+import { Capacitor } from '@capacitor/core';
 
 interface AssignmentWorkspaceProps {
   userProfile: any;
@@ -140,9 +142,15 @@ const AssignmentWorkspace: React.FC<AssignmentWorkspaceProps> = ({ userProfile }
         heightLeft -= pdfHeight;
       }
 
-      // Save PDF locally
+      // Save PDF
       const fileName = `${(title || topic).replace(/\s+/g, '_')}_Assignment.pdf`;
-      pdf.save(fileName);
+      
+      if (Capacitor.isNativePlatform()) {
+        const pdfBase64 = pdf.output('datauristring');
+        await savePdfFromBase64(pdfBase64, fileName);
+      } else {
+        pdf.save(fileName);
+      }
 
       setSuccess(true);
       setTimeout(() => setSuccess(false), 5000);
@@ -286,8 +294,8 @@ const AssignmentWorkspace: React.FC<AssignmentWorkspaceProps> = ({ userProfile }
               
               {/* Logo Preview - Locked to UDSM default */}
               <div style={{ gridColumn: '1 / -1', marginTop: '16px', background: 'var(--bg-card)', padding: '16px', borderRadius: '12px', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div style={{ width: '48px', height: '48px', background: 'var(--bg-main)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', border: '1px solid var(--border)', flexShrink: 0 }}>
-                  <img src={UDSM_LOGO} alt="UDSM Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                <div style={{ width: '48px', height: '48px', background: 'white', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', border: '1px solid var(--border)', flexShrink: 0 }}>
+                  <img src={UDSM_LOGO} alt="UDSM Logo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
                 <div>
                   <div style={{ fontSize: '14px', fontWeight: '700', color: 'var(--text-dark)' }}>School Logo</div>
@@ -408,7 +416,7 @@ const AssignmentWorkspace: React.FC<AssignmentWorkspaceProps> = ({ userProfile }
                 
                 {/* School Logo */}
                 <div style={{ margin: '0 auto 60px auto', display: 'flex', justifyContent: 'center' }}>
-                  <img src={UDSM_LOGO} alt="University Logo" style={{ height: '180px', objectFit: 'contain' }} />
+                  <img src={UDSM_LOGO} alt="University Logo" style={{ height: '220px', width: '220px', objectFit: 'contain' }} />
                 </div>
                 
                 <div style={{ width: '100%', height: '2px', background: '#222', marginBottom: '30px' }} />

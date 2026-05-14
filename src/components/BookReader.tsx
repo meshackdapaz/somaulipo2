@@ -3,6 +3,8 @@ import * as pdfjsLib from 'pdfjs-dist';
 import mammoth from 'mammoth';
 import { ArrowLeft, ChevronLeft, ChevronRight, BookOpen, AlertTriangle, Download, FileText, DownloadCloud, CheckCircle2 } from 'lucide-react';
 import { idbLibrary } from '../lib/idb';
+import { downloadFile } from '../lib/download';
+import { Capacitor } from '@capacitor/core';
 
 // Use a verified CDN URL for the worker
 pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
@@ -289,9 +291,12 @@ const BookReader: React.FC<BookReaderProps> = ({ book, onClose }) => {
           <div style={{ color: '#ff8080', textAlign: 'center', fontSize: '14px', padding: '20px 32px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px', maxWidth: '380px' }}>
             <AlertTriangle size={32} />
             <div style={{ lineHeight: 1.6 }}>{error}</div>
-            <a href={book.file_url} download style={{ color: 'rgba(255,200,100,0.8)', fontWeight: '700', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px', textDecoration: 'none' }}>
+            <button 
+              onClick={() => downloadFile(book.file_url, `${book.title.replace(/\s+/g, '_')}_${getFileType(book.file_url)}`)}
+              style={{ background: 'none', border: 'none', color: 'rgba(255,200,100,0.8)', fontWeight: '700', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}
+            >
               <Download size={14} /> Download file instead
-            </a>
+            </button>
           </div>
         )}
 
@@ -303,9 +308,12 @@ const BookReader: React.FC<BookReaderProps> = ({ book, onClose }) => {
             <div style={{ fontSize: '13px', opacity: 0.7, lineHeight: 1.6 }}>
               This file type cannot be read in-browser. You can download it to open with an appropriate app.
             </div>
-            <a href={book.file_url} download style={{ background: 'rgba(200,160,106,0.25)', border: '1px solid rgba(200,160,106,0.4)', color: 'rgba(232,200,122,0.9)', padding: '12px 24px', borderRadius: '12px', fontWeight: '700', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
+            <button 
+              onClick={() => downloadFile(book.file_url, `${book.title.replace(/\s+/g, '_')}_${getFileType(book.file_url)}`)}
+              style={{ background: 'rgba(200,160,106,0.25)', border: '1px solid rgba(200,160,106,0.4)', color: 'rgba(232,200,122,0.9)', padding: '12px 24px', borderRadius: '12px', fontWeight: '700', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
+            >
               <Download size={16} /> Download File
-            </a>
+            </button>
           </div>
         )}
 
