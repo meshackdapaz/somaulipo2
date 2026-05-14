@@ -25,16 +25,22 @@ export const downloadFile = async (url: string, fileName: string) => {
       const result = await Filesystem.writeFile({
         path: fileName,
         data: base64Data,
-        directory: Directory.Cache, // Using Cache directory is safer for sharing
+        directory: Directory.Documents,
       });
 
-      // 4. Share the file
-      await Share.share({
-        title: fileName,
-        text: 'Save your file',
-        url: result.uri,
-        dialogTitle: 'Share or Save PDF',
-      });
+      alert(`File saved successfully to your Documents folder.\nFile: ${fileName}`);
+
+      // 4. Share the file (Optional, if they want to send it)
+      try {
+        await Share.share({
+          title: fileName,
+          text: 'Save or share your file',
+          url: result.uri,
+          dialogTitle: 'Share PDF',
+        });
+      } catch (shareError) {
+        console.log('Share dialog cancelled or failed', shareError);
+      }
     } catch (error) {
       console.error('Download error:', error);
       alert('Failed to download file. Please try again.');
@@ -58,15 +64,21 @@ export const savePdfFromBase64 = async (base64WithHeader: string, fileName: stri
       const result = await Filesystem.writeFile({
         path: fileName,
         data: base64Data,
-        directory: Directory.Cache,
+        directory: Directory.Documents,
       });
 
-      await Share.share({
-        title: fileName,
-        text: 'Your generated PDF',
-        url: result.uri,
-        dialogTitle: 'Share or Save PDF',
-      });
+      alert(`PDF generated and saved to your Documents folder.\nFile: ${fileName}`);
+
+      try {
+        await Share.share({
+          title: fileName,
+          text: 'Your generated PDF',
+          url: result.uri,
+          dialogTitle: 'Share PDF',
+        });
+      } catch (shareError) {
+        console.log('Share dialog cancelled or failed', shareError);
+      }
     } catch (error) {
       console.error('PDF Save error:', error);
       alert('Failed to save PDF.');
